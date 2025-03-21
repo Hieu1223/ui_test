@@ -27,6 +27,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SearchController {
+
+    
+
     public static final class SearchData{
         public SearchData(String name, double priceRangeEnd, String sortBy, List<String> vendors, List<String> types,
                 List<String> screenSize) {
