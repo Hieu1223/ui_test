@@ -3,6 +3,7 @@ package ui_test.controllers;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeMap;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -121,15 +122,17 @@ void HandleSearch(ActionEvent event) {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                List<Parent> list = new LinkedList<>();
                 SearchData searchData = new SearchData(searchText.getText(), priceSlider.getValue() * 5, sortByBox.getValue().toString(), vendorList, typeList, screenSizeList);
                 List<Product> products = SearchDatabase.getProduct(searchData);
-                for (Product product : products) {
+                for (int i = 0; i< products.size(); i++) {
                     FXMLLoader loader = new FXMLLoader(SearchController.class.getResource("laptop-cell.fxml"));
                     Parent cell = loader.load();
                     CellController cellController = loader.getController();
-                    cellController.setData(product);
-                    Platform.runLater(() -> productList.getChildren().add(cell));
+                    cellController.setData(products.get(i));
+                    list.add(cell);
                 }
+                Platform.runLater(() -> productList.getChildren().setAll(list));
                 return null;
             }
         };
