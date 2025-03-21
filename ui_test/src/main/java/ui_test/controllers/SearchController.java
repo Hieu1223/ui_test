@@ -3,7 +3,6 @@ package ui_test.controllers;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeMap;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -118,6 +117,8 @@ public class SearchController {
     @FXML
 void HandleSearch(ActionEvent event) {
     productList.getChildren().clear();
+    Text progress = new Text();
+    productList.getChildren().add(progress);
     try {
         Task<Void> task = new Task<Void>() {
             @Override
@@ -125,7 +126,10 @@ void HandleSearch(ActionEvent event) {
                 List<Parent> list = new LinkedList<>();
                 SearchData searchData = new SearchData(searchText.getText(), priceSlider.getValue() * 5, sortByBox.getValue().toString(), vendorList, typeList, screenSizeList);
                 List<Product> products = SearchDatabase.getProduct(searchData);
+                progress.setText("Loaded from database");
                 for (int i = 0; i< products.size(); i++) {
+                    int k = i;
+                    Platform.runLater(()->progress.setText("loaded " + k + " product(s) out of " + products.size()));
                     FXMLLoader loader = new FXMLLoader(SearchController.class.getResource("laptop-cell.fxml"));
                     Parent cell = loader.load();
                     CellController cellController = loader.getController();

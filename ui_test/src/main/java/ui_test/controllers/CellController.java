@@ -1,13 +1,22 @@
 package ui_test.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import ui_test.models.Product;
 
 public class CellController {
+    @FXML
+    private HBox cell;
 
     @FXML
     private ImageView productImage;
@@ -17,6 +26,9 @@ public class CellController {
 
     @FXML
     private Text prpductPrice;
+
+
+    Product productData;
 
     public void setData(Product data){
         productImage.setFitWidth(50);
@@ -34,6 +46,23 @@ public class CellController {
                 return null;
             }
         };
-        
-   } 
+        productData = data;
+    }  
+    
+    @FXML
+    public void initialize(){
+        cell.hoverProperty().addListener(new ChangeListener<Boolean>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                
+            }
+        });
+        cell.setOnMouseClicked(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                System.out.println("Clicked");
+            }
+        });
+    }
 }
