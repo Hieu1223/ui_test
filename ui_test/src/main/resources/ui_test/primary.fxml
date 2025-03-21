@@ -152,7 +152,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by" textAlignment="CENTER" />
                         <Pane prefHeight="26.0" prefWidth="11.0" />
-                        <ComboBox fx:id="sortByBox" prefHeight="7.0" prefWidth="111.0" promptText="Relevance" />
+                        <ComboBox fx:id="sortByBox" prefHeight="7.0" prefWidth="111.0" promptText="Empty" />
                      </children>
                   </HBox>
                </children>

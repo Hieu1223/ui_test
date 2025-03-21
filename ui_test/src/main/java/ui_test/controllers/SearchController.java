@@ -105,6 +105,8 @@ public class SearchController {
         ObservableList list =  FXCollections.observableArrayList();
         list.addAll("Relevance", "Lowest price", "Highest price");
         sortByBox.setItems(list);
+        sortByBox.getSelectionModel().selectFirst();
+        //sortByBox.setValue(list.get(0));
     }
 
     @FXML
