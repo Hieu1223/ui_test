@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="266.0" style="-fx-spacing: 16;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui_test.controllers.CellController">
+   <children>
+      <ImageView fx:id="productImage" fitHeight="51.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/333430/acer-nitro-v-15-anv15-41-r2up-r5-nhqpgsv004-638774737367845195-600x600.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="357.0">
+         <children>
+            <Text fx:id="productTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Asus X415" wrappingWidth="370.1367130279541">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="prpductPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="12,000,000,000 vnd" wrappingWidth="364.2534637451172" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

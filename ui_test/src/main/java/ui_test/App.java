@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Stack;
 
 /**
  * JavaFX App
@@ -14,9 +15,9 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
+        System.setProperty("http.agent", "Chrome");
         try{
         scene = new Scene(loadFXML("primary"));
         } catch(Exception e){
@@ -26,7 +27,7 @@ public class App extends Application {
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

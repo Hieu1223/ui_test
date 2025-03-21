@@ -42,16 +42,23 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui_test.controllers.SearchController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
+            <Menu disable="true" mnemonicParsing="false">
+               <graphic>
+                  <Label alignment="CENTER" text="Back" textAlignment="CENTER" />
+               </graphic>
+            </Menu>
         <Menu mnemonicParsing="false">
                <graphic>
                   <Label text="Home" />
@@ -88,70 +95,92 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="362.0" prefWidth="439.0" />
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="362.0" prefWidth="439.0">
+                     <content>
+                        <VBox fx:id="productList" prefHeight="296.0" prefWidth="205.0" style="-fx-spacing: 8;">
+                           <children>
+                              <HBox prefHeight="51.0" prefWidth="252.0" style="-fx-spacing: 16;">
+                                 <children>
+                                    <ImageView fitHeight="49.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../../smug/Screenshot_27-1-2025_22231_mangadex.org.jpeg" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="357.0">
+                                       <children>
+                                          <Text fx:id="productTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Asus X415" wrappingWidth="370.1367130279541">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="12,000,000,000 vnd" wrappingWidth="364.2534637451172" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
                </children>
             </VBox>
             <VBox prefHeight="374.0" prefWidth="178.0" style="-fx-padding: 8;">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="358.0" prefWidth="182.0" vbarPolicy="ALWAYS">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="662.0" prefWidth="160.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="358.0" prefWidth="82.0" style="-fx-padding: 0 8 0 0;" vbarPolicy="ALWAYS">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="494.0" prefWidth="139.0" style="-fx-spacing: 8;">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="451.0" prefWidth="163.0" style="-fx-spacing: 8;">
+                              <VBox alignment="CENTER" prefHeight="90.0" prefWidth="158.0">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="90.0" prefWidth="158.0">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #adadad;" text="Narrow by price" textAlignment="CENTER" wrappingWidth="156.53675091266632" />
+                                    <Slider fx:id="priceSlider" majorTickUnit="2.0" max="4.0" minorTickCount="1" prefHeight="14.0" prefWidth="85.0" snapToTicks="true" />
+                                    <Text fx:id="priceSliderText" strokeLineJoin="BEVEL" strokeWidth="0.0" text="under 1000" textAlignment="CENTER" wrappingWidth="155.45775985717773" />
+                                    <CheckBox alignment="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="149.0" text="Special offers" />
+                                 </children>
+                              </VBox>
+                              <Separator prefHeight="14.0" prefWidth="101.0" />
+                              <VBox alignment="CENTER" prefHeight="109.0" prefWidth="157.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #adadad;" text="Narrow by vendor" textAlignment="CENTER" wrappingWidth="156.53675091266632" />
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 6;">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #adadad;" text="Narrow by price" textAlignment="CENTER" wrappingWidth="156.53675091266632" />
-                                          <Slider fx:id="priceSlider" majorTickUnit="2.0" max="4.0" minorTickCount="1" prefHeight="14.0" prefWidth="108.0" snapToTicks="true" />
-                                          <Text fx:id="priceSliderText" strokeLineJoin="BEVEL" strokeWidth="0.0" text="under 1000" textAlignment="CENTER" wrappingWidth="155.45775985717773" />
-                                          <CheckBox alignment="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="149.0" text="Special offers" />
-                                       </children>
-                                    </VBox>
-                                    <Separator prefHeight="14.0" prefWidth="101.0" />
-                                    <VBox alignment="CENTER" prefHeight="109.0" prefWidth="157.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #adadad;" text="Narrow by vendor" textAlignment="CENTER" wrappingWidth="156.53675091266632" />
-                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 6;">
-                                             <children>
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="Asus" />
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="Apple" />
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="Lenovo" />
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="MSI" />
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="HP" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </VBox>
-                                    <Separator prefHeight="14.0" prefWidth="101.0" />
-                                    <VBox alignment="CENTER" prefHeight="90.0" prefWidth="170.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #adadad;" text="Narrow by type" textAlignment="CENTER" wrappingWidth="156.53675091266632" />
-                                          <VBox alignment="CENTER" prefHeight="279.0" prefWidth="170.0" style="-fx-spacing: 6;">
-                                             <children>
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="Gaming" />
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="AI" />
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="28.0" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="Graphic" />
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="Thin and light" />
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="65.0" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="Premium" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </VBox>
-                                    <Separator prefHeight="63.0" prefWidth="157.0" />
-                                    <VBox alignment="CENTER" prefHeight="90.0" prefWidth="170.0" style="-fx-spacing: 6;">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #adadad;" text="Screen size" textAlignment="CENTER" wrappingWidth="156.53675091266632" />
-                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddScreenSize" prefHeight="18.0" prefWidth="149.0" text="13 inch" />
-                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="29.0" mnemonicParsing="false" onAction="#AddScreenSize" prefHeight="18.0" prefWidth="149.0" text="14 inch" />
-                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="45.0" mnemonicParsing="false" onAction="#AddScreenSize" prefHeight="18.0" prefWidth="149.0" text="15 inch" />
-                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="63.0" mnemonicParsing="false" onAction="#AddScreenSize" prefHeight="18.0" prefWidth="149.0" text="16 inch" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="Asus" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="Apple" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="Lenovo" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="MSI" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddVendor" prefHeight="18.0" prefWidth="149.0" text="HP" />
                                        </children>
                                     </VBox>
                                  </children>
                               </VBox>
+                              <Separator prefHeight="14.0" prefWidth="101.0" />
+                              <VBox alignment="CENTER" prefHeight="90.0" prefWidth="170.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #adadad;" text="Narrow by type" textAlignment="CENTER" wrappingWidth="156.53675091266632" />
+                                    <VBox alignment="CENTER" prefHeight="279.0" prefWidth="170.0" style="-fx-spacing: 6;">
+                                       <children>
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="Gaming" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="AI" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="28.0" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="Graphic" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="47.0" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="Thin and light" />
+                                          <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="65.0" mnemonicParsing="false" onAction="#AddType" prefHeight="18.0" prefWidth="149.0" text="Premium" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                              <Separator prefHeight="63.0" prefWidth="157.0" />
+                              <VBox alignment="CENTER" prefHeight="90.0" prefWidth="170.0" style="-fx-spacing: 6;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #adadad;" text="Screen size" textAlignment="CENTER" wrappingWidth="156.53675091266632" />
+                                    <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#AddScreenSize" prefHeight="18.0" prefWidth="149.0" text="13 inch" />
+                                    <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="29.0" mnemonicParsing="false" onAction="#AddScreenSize" prefHeight="18.0" prefWidth="149.0" text="14 inch" />
+                                    <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="45.0" mnemonicParsing="false" onAction="#AddScreenSize" prefHeight="18.0" prefWidth="149.0" text="15 inch" />
+                                    <CheckBox alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="63.0" mnemonicParsing="false" onAction="#AddScreenSize" prefHeight="18.0" prefWidth="149.0" text="16 inch" />
+                                 </children>
+                              </VBox>
                            </children>
-                        </AnchorPane>
-                    </content>
+                        </VBox>
+                     </content>
                   </ScrollPane>
                </children>
             </VBox>

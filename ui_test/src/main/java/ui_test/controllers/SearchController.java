@@ -1,30 +1,29 @@
 package ui_test.controllers;
 
-import java.io.Console;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ui_test.models.Product;
 
 public class SearchController {
 
@@ -72,7 +71,9 @@ public class SearchController {
 
     @FXML
     private ComboBox<?> sortByBox;
-
+    
+    @FXML
+    private VBox productList;
 
 
     Stage chatRoom;
@@ -112,13 +113,32 @@ public class SearchController {
         //sortByBox.setValue(list.get(0));
     }
 
-    @FXML
-    void HandleSearch(ActionEvent event) {
-        SearchData searchData = new SearchData(searchText.getText(), priceSlider.getValue()*5,sortByBox.getValue().toString(),
-                                        vendorList,typeList,screenSizeList);
-        System.out.println(searchData.toString());
 
+    @FXML
+void HandleSearch(ActionEvent event) {
+    productList.getChildren().clear();
+    try {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                SearchData searchData = new SearchData(searchText.getText(), priceSlider.getValue() * 5, sortByBox.getValue().toString(), vendorList, typeList, screenSizeList);
+                List<Product> products = SearchDatabase.getProduct(searchData);
+                for (Product product : products) {
+                    FXMLLoader loader = new FXMLLoader(SearchController.class.getResource("laptop-cell.fxml"));
+                    Parent cell = loader.load();
+                    CellController cellController = loader.getController();
+                    cellController.setData(product);
+                    Platform.runLater(() -> productList.getChildren().add(cell));
+                }
+                return null;
+            }
+        };
+        new Thread(task).start();
+    } catch (Exception e) {
+        System.out.println(e);
     }
+}
+
     @FXML
     void handleSlider(MouseEvent event) {
         //double val = priceSlider.getValue();
@@ -166,7 +186,7 @@ public class SearchController {
 
 
     @FXML
-    void openChat(MouseEvent event) {
+    void openChat(MouseEvent event) throws IOException {
         if(chatRoom == null){
             chatRoom = new Stage();
             chatRoom.setTitle("Chat");
