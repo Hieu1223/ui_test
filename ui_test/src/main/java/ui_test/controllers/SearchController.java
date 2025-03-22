@@ -75,6 +75,11 @@ public class SearchController {
     @FXML
     private VBox productList;
 
+    @FXML
+    private TextField chatBox;
+
+    @FXML
+    private VBox messageBox;
 
     Stage chatRoom;
 
@@ -194,20 +199,13 @@ void HandleSearch(ActionEvent event) {
 
     @FXML
     void openChat(MouseEvent event) throws IOException {
-        if(chatRoom == null){
-            chatRoom = new Stage();
-            chatRoom.setTitle("Chat");
-            try{
-                Parent root = FXMLLoader.load(getClass().getResource("chat-room.fxml"));
-                Scene scene = new Scene(root);
-                chatRoom.setScene(scene);
-            } catch(Exception e){
-                System.err.println(e);
-            }
-            chatRoom.show();        }
-        else{
-            chatRoom.show();
-            chatRoom.toFront();
-        }
+        
+    }
+
+    
+    @FXML
+    void clickedSend(MouseEvent event) {
+        messageBox.getChildren().add(new Text(chatBox.getText()));
+        chatBox.clear();
     }
 }
