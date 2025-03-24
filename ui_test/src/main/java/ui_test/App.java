@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ui_test.controllers.Navigation;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -19,7 +20,12 @@ public class App extends Application {
     public void start(Stage stage) {
         System.setProperty("http.agent", "Chrome");
         try{
-        scene = new Scene(loadFXML("primary"));
+        Parent mainPage = loadFXML("primary");
+        scene = new Scene(mainPage);
+        Navigation.mainPage = mainPage;
+        Navigation.productPage = loadFXML("product-page");
+        Navigation.scene = scene;
+        Navigation.stage = stage;
         } catch(Exception e){
             System.out.println(e);
         }

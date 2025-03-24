@@ -6,6 +6,7 @@ import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -37,7 +38,6 @@ public class CellController {
         prpductPrice.setText("" + data.getPrice());
         System.out.println(data.getImageSource());
         Task<Void> fetchImage = new Task<Void>() {
-
             @Override
             protected Void call() throws Exception {
                 Image image = new Image(data.getImageSource(),50,0,true,false);
@@ -61,7 +61,8 @@ public class CellController {
         cell.setOnMouseClicked(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {
-                System.out.println("Clicked");
+                Navigation.stack.push(Navigation.scene.getRoot());
+                Navigation.scene.setRoot(Navigation.productPage);
             }
         });
     }
